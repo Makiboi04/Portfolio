@@ -36,6 +36,7 @@
                     <li><a href="#home" class="nav-link active">Home</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="#videos" class="nav-link">Videos</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -73,7 +74,7 @@
             </div>
         </div>
         <div class="scroll-down">
-            <a href="#about">
+            <a href="#about">	
                 <div class="mouse">
                     <div class="wheel"></div>
                 </div>
@@ -160,6 +161,66 @@
         </div> 
     </section>
 
+    <!-- Large Video Section -->
+    <section id="videos" class="videos">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="subtitle">My Videos</span>
+                <h2>Project Demonstrations</h2>
+            </div>
+            
+            <div class="video-grid">
+                
+                
+                <!-- Regular Large Videos -->
+                <div class="video-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="video-container-large">
+                        <div class="video-thumbnail" onclick="loadVideo(this, 'SafVgVBrloU')">
+                            <img src="Pic2.png" alt="Numerical Methods Python">
+                            <div class="play-button-large">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Numerical Methods (Python)</h3>
+                        <p>Advanced mathematical computations and algorithms implemented in Python for solving complex numerical problems.</p>
+                    </div>
+                </div>
+
+                <div class="video-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="video-container-large">
+                        <div class="video-thumbnail" onclick="loadVideo(this, 'pYuy3v5JsMA')">
+                            <img src="Pic1.png" alt="Numerical Methods Matlab">
+                            <div class="play-button-large">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Numerical Methods (Matlab)</h3>
+                        <p>Complex mathematical modeling and simulation using Matlab for engineering applications and data analysis.</p>
+                    </div>
+                </div>
+
+                <div class="video-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="video-container-large">
+                        <div class="video-thumbnail" onclick="loadVideo(this, 'DtFr68vCGV0')">
+                            <img src="Sumobot.jpg" alt="Sumo-Hockey Bot">
+                            <div class="play-button-large">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Sumo-Hockey Bot</h3>
+                        <p>Watch my autonomous robot in competitive action, demonstrating advanced robotics and AI programming skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -172,33 +233,19 @@
                     <a href="#contact" class="btn primary">Hire Me <i class="fas fa-user-plus"></i></a>
                 </div>
                 
+                <div class="skills-list">
                     <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
                         <div class="skill-info">
                             <h4>UI/UX Design</h4>
-                            
                         </div>
-                      
                     </div>
                     
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
                         <div class="skill-info">
                             <h4>Web Development</h4>
-                           
                         </div>
-                       
-                   
-                   
-                        <div class="skill-info">
-                            <h4>Branding</h4>
-                         
-                        </div>
-                        
-                  
-                        <div class="skill-info">
-                            <h4>Mobile Design</h4>
-                           
-                        </div>
-                       
-                    </div>
+                    </div> 
+                    
                 </div>
             </div>
         </div>
@@ -303,7 +350,6 @@
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let isEnd = false;
 
         function typeEffect() {
             const currentWord = words[wordIndex];
@@ -311,15 +357,12 @@
             typingText.textContent = currentChar;
 
             if (!isDeleting && charIndex < currentWord.length) {
-                // Type the word
                 charIndex++;
                 setTimeout(typeEffect, 100);
             } else if (isDeleting && charIndex > 0) {
-                // Delete the word
                 charIndex--;
                 setTimeout(typeEffect, 50);
             } else {
-                // Switch to next word
                 isDeleting = !isDeleting;
                 if (!isDeleting) {
                     wordIndex = (wordIndex + 1) % words.length;
@@ -328,31 +371,24 @@
             }
         }
 
-        // Start the typing effect
         typeEffect();
 
-        // Portfolio filtering
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const workItems = document.querySelectorAll('.work-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterBtns.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                const filter = this.getAttribute('data-filter');
-                
-                workItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
+        // Video loading function
+        function loadVideo(element, videoId) {
+            const videoContainer = element.parentElement;
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.borderRadius = '12px';
+            iframe.title = 'YouTube video player';
+            
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(iframe);
+        }
 
         // Back to top button
         const backToTopBtn = document.querySelector('.back-to-top');
