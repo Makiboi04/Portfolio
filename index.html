@@ -373,7 +373,7 @@
 
         typeEffect();
 
-        // Video loading function
+        // FIXED: Video loading function
         function loadVideo(element, videoId) {
             const videoContainer = element.parentElement;
             const iframe = document.createElement('iframe');
@@ -381,6 +381,11 @@
             iframe.frameBorder = '0';
             iframe.allowFullscreen = true;
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            
+            // FIXED: Ensure iframe takes full container size
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
             iframe.style.width = '100%';
             iframe.style.height = '100%';
             iframe.style.borderRadius = '12px';
